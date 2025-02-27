@@ -1,0 +1,177 @@
+<!-- component -->
+<title> MedDine - Revitalising your meals:unlocking the cornucopia of nourishing bites
+</title>
+<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+<link rel="stylesheet"
+  href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+<main class="profile-page">
+  <section class="relative block h-500-px">
+    <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
+            background-image: url('/images/203938900-levitation-of-cartoon-foods-screams-mouth-open-vegetables-and-fruits-selection-characters-healthy_\(1\)-transformed\ \(1\).jpeg');
+          ">
+      <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
+    </div>
+    <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
+      style="transform: translateZ(0px)">
+      <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+        <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="relative py-16 bg-blueGray-200">
+    <div class="container mx-auto px-4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+        <div class="px-6">
+          <div class="flex flex-wrap justify-center">
+            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex flex-col justify-between items-center">
+              <div
+                class="relative bg-black shadow-xl rounded-full overflow-hidden -m-16 -ml-20 lg:-ml-16 absolute inset-0 bg-cover bg-center"
+                style="height: 150px; width: 150px; background-image: url('<%= user.imagePath %>');">
+
+              </div>
+
+              <h4 id="editProfile" class="text-danger font-bold cursor-pointer" style="margin-bottom: -2rem;">Edit Image
+              </h4>
+              <input type="file" id="fileInput" style="display: none;">
+
+            </div>
+            <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+              <!-- <div class="py-6 px-3 mt-32 sm:mt-0">
+                <a href="/edit?id=<%= user._id%>"><button  class="bg- active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button" style="background-color: rgb(5, 5, 80);">
+                  Edit Profile
+                </button></a>
+              </div> -->
+            </div>
+            <div class="w-full lg:w-4/12 px-4 lg:order-1">
+              <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                <div class="mr-4 p-3 text-center">
+                  <a href="/"><button
+                      class="bg- active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                      type="button" style="background-color: rgb(203, 17, 0);">
+                      Back to Home
+                    </button></a>
+                </div>
+                <div class="mr-4 p-3 text-center">
+                </div>
+                <div class="lg:mr-4 p-3 text-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-12">
+            <h3 class="text-4xl font-semibold leading-normal mb-2  " style="color: rgb(0, 0, 83);">
+              <%= user.username %>
+            </h3>
+            <div class="text-md leading-normal mt-0 mb-2 text-dark font-bold ">
+
+              <%= user.email %>
+            </div>
+            <div class="mb-2 text-blueGray-600 mt-3">
+              <span class="font-bold uppercase text-md">Age :</span>
+              <%= user.age %> Y/R
+            </div>
+            <div class="mb-2 text-blueGray-600 mt-3">
+              <span class="font-bold uppercase text-md">Food Preference :</span>
+              <%= user.type %>
+            </div>
+          </div>
+          <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full lg:w-9/12 px-4">
+                
+                  <% if(user.disease[0]){ %>
+                    <% if (plans) { %>
+                    <p class="mb-4 text-lg leading-relaxed text-blueGray-700"
+                      style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: green; font-weight: 500;">
+                      Your diet plan is ready for today please check it down !!
+                    </p>
+                    <a href="/getDailyPlan" class="font-normal text-pink-500"><button
+                        class="bg- active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                        type="button" style="background-color: rgb(0, 14, 79);">
+                        Get Diet Plan
+                      </button> </a>
+                      <% }else { %>
+                        <p class="mb-4 text-lg leading-relaxed text-blueGray-700"
+                            style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: red; ">
+                            Sorry, currently we dont have the diet plan according to your disease and food prefernce we will add the datas soon.
+                          </p>
+                        <% } %>
+  
+                    <% }else{ %>
+                      
+                      <p class="mb-4 text-lg leading-relaxed text-blueGray-700"
+                        style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: rgb(0, 0, 113); ">
+                        We are providing daily diet plan according to your disease,So kindly you may please setup your
+                        disease.
+                      </p>
+                      <a href="/edit" class="font-normal text-pink-500"><button
+                          class="bg- active:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                          type="button" style="background-color: rgb(0, 14, 79);">
+                          Setup Diseases
+                        </button> </a>
+
+                        
+  
+                      <% } %>
+                 
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="relative bg-blueGray-200 pt-8 pb-6 mt-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+          <div class="w-full md:w-6/12 px-4 mx-auto text-center">
+
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <!-- Modal -->
+</main>
+
+
+
+
+
+<script>
+  // JavaScript
+  document.getElementById('editProfile').addEventListener('click', function () {
+    // Trigger file input click
+    document.getElementById('fileInput').click();
+  });
+
+  // Handle file selection
+  document.getElementById('fileInput').addEventListener('change', function (event) {
+    // Get selected file
+    const file = event.target.files[0];
+
+    // Create FormData object to send file via AJAX
+    const formData = new FormData();
+    formData.append('profileImage', file);
+
+    // AJAX request to send file to backend
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/updateImage', true); // Update URL with your backend endpoint
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        alert('Profile image updated successfully!');
+        window.location.reload();
+      } else {
+        // Handle error
+        alert('Error updating profile image.');
+      }
+    };
+    xhr.onerror = function () {
+      // Handle error
+      alert('Error updating profile image.');
+    };
+    xhr.send(formData);
+  });
+</script>

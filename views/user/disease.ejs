@@ -1,0 +1,112 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+  <link href="/css/search.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="s006">
+    <form>
+      <fieldset>
+        <legend>Get the diet plan for your disease </legend>
+        <div class="inner-form">
+          <div class="input-field">
+            <button class="btn-search" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                </path>
+              </svg>
+            </button>
+            <div class="search-container">
+              <input  type="text" id="search" placeholder="Search..." autocomplete="off">
+              <button onclick="post()"  type="button" id="searchButton">Search</button>
+              <div id="searchResults"></div>
+            </div>
+
+          </div>
+        </div>
+        
+      </fieldset>
+    </form>
+  </div>
+<script>
+  function post() {
+    // Get the search input value
+    console.log('hello');
+    var searchInput = document.getElementById("search").value;
+
+    // Make sure the search input is not empty
+    if (searchInput.trim() !== "") {
+      // Make a POST request to your server route with the search input as the query
+      fetch('/postDisease', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: searchInput }),
+      }).then(response => response.json())
+  .then(data => {
+    if (data.Data) {
+      console.log(data.Data);
+      console.log(data.session);
+
+      // Redirect to the '/user/dietPlan' page
+      window.location.href = `/getDiet?data=${data.value}`;
+    } else {
+      console.error(data.error);
+    }
+  })
+
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  }
+
+</script>
+  
+
+<script>
+
+  const searchInput = document.getElementById('search');
+  const searchResults = document.getElementById('searchResults');
+
+  searchInput.addEventListener('input', function () {
+    const searchText = this.value.trim(); // Get the value of the search input and trim whitespace
+    if (searchText === '') {
+      searchResults.innerHTML = ''; // Clear the search results if the search input is empty
+      return;
+    }
+    
+    // Make an AJAX request to fetch search results
+    fetch(`/search?query=${encodeURIComponent(searchText)}`)
+      .then(response => response.json())
+      .then(data => { 
+        if(data.length < 1){
+          searchResults.innerHTML = '<div>No disease found in our datas</div>';
+        }else{
+          const resultsHTML = data.map(item => `<div class="search-suggestion">${item}</div>`).join('');
+          searchResults.innerHTML = resultsHTML;
+
+          // Handle click event on search suggestions
+          const suggestions = document.querySelectorAll('.search-suggestion');
+          suggestions.forEach(suggestion => {
+            suggestion.addEventListener('click', function () {
+              // Set the input field value to the clicked suggestion
+              searchInput.value = this.innerText;
+              // Clear the search results
+              searchResults.innerHTML = '';
+            });
+          });
+        }      
+      })
+      .catch(error => {
+        console.error('Error fetching search results:', error);
+        searchResults.innerHTML = '<div>An error occurred while fetching search results.</div>';
+      });
+  });
+
+</script>
+
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
