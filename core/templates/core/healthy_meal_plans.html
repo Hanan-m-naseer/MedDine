@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Healthy Meal Plans</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/">MedDine</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+    </nav>
+
+    <main class="meal-list-page">
+        <!-- <h1>Our Healthy Meal Recipes</h1> -->
+        <div class="meal-grid">
+            {% for meal in meals %}
+            <div class="meal-card">
+                <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
+                <h2>{{ meal.name }}</h2>
+                <p>{{ meal.preparation }}</p>
+                <h4>Nutrition Chart</h4>
+                <p>{{ meal.nutrition_chart }}</p>
+            </div>
+            {% empty %}
+            <p>No meals available yet.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>About Us</h4>
+                <p>MedDine provides AI-assisted, disease-friendly meal plans tailored to your body’s needs.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <p>Email: support@meddine.com<br>Phone: +91 99958 28826</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2024 MedDine. All rights reserved.</div>
+    </footer>
+</body>
+</html>

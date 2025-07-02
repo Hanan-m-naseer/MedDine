@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Preferences | MedDine</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <section class="edit-diseases-hero">
+    <div class="overlay"></div>
+    <div class="edit-diseases-content">
+      <div class="form-card">
+        <h1>Update Your Preferences</h1>
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="auth-button">Save Preferences</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

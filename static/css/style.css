@@ -1,0 +1,348 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+/* NAVBAR */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.3);   /* darker subtle transparency */
+    backdrop-filter: blur(4px);
+    color: #fff;
+    z-index: 10;
+}
+.navbar a {
+    color: #fff;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+.navbar a:hover {
+    text-decoration: underline;
+}
+.nav-left a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4CAF50;   /* NEW matching green color for MedDine brand */
+    text-decoration: none;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    color: white;
+}
+.homepage-hero {
+    background-image: url('/static/images/homepage.jpeg');
+}
+
+
+.hero-content {
+    max-width: 40%;
+    padding: 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* FOOTER */
+footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 2rem;
+    margin-top: rem;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer-content div {
+    flex: 1;
+    margin: 0 1rem;
+}
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+.footer-links  {
+    text-align: right;
+    
+}
+
+/* MEAL GRID LIST PAGE */
+.meal-list-page {
+    padding: 5rem;
+    background-color: #f8f8f8;
+}
+
+.meal-list-page h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #4CAF50;
+}
+
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.meal-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
+}
+
+.meal-card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.meal-card h2 {
+    color: #4CAF50;
+    margin: 1rem 0 0.5rem;
+}
+
+.meal-card p {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* AUTH PAGES */
+.auth-hero {
+    position: relative;
+    background: url("/static/images/loginandreg.jpeg") center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.auth-hero .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.auth-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.auth-container h1 {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container form p {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.auth-container input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.auth-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+    background-color: #45a049;
+}
+
+.switch-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.switch-link a {
+    color: #177b25;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 0.8rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+    color: #5D3A6A;
+}
+
+.form-group input, .form-group select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+
+/* EDIT DISEASES PAGE */
+
+.edit-diseases-hero {
+    position: relative;
+    height: 120vh;
+    background-image: url('/static/images/edit.jpeg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.edit-diseases-hero .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.edit-diseases-content {
+    position: relative;
+    max-width: 40%;
+    margin-left: 5%;
+    z-index: 2;
+    color: #fff;
+}
+
+.form-card {
+    background: rgba(255,255,255,0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.form-card h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #177b25;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.auth-button {
+    display: inline-block;
+    background-color: #177b25;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.auth-button:hover {
+    background-color: #177b25;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+}
+

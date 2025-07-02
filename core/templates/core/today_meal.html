@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Today's Meal Plan | MedDine</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .navbar a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-weight: 500;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .nav-left {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .today-meal-container {
+            max-width: 1200px;
+            margin: 140px auto 50px auto;
+            padding: 1rem;
+        }
+        .today-meal-container h1 {
+            text-align: center;
+            color: #2e7d32;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .today-meal-card {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #fff;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .today-meal-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .meal-image {
+            flex: 1 1 300px;
+            max-width: 400px;
+            overflow: hidden;
+        }
+        .meal-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .meal-content {
+            flex: 2 1 400px;
+            padding: 2rem;
+            background-color: #fafafa;
+        }
+        .meal-content h2 {
+            margin-top: 0;
+            color: #2e7d32;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .meal-content h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 600;
+        }
+        .meal-content p {
+            background: #fff;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+        .meal-content pre {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.95rem;
+            color: #444;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #ddd;
+        }
+
+        .no-meal {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 2rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .footer-content div {
+            flex: 1 1 300px;
+            margin: 1rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .footer-links {
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .today-meal-card {
+                flex-direction: column;
+            }
+            .meal-image, .meal-content {
+                max-width: 100%;
+                flex: 1 1 100%;
+            }
+            .footer-links {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="/">MedDine</a>
+    </div>
+    <div class="nav-right">
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'edit_diseases' %}">Edit Diseases</a>
+        <a href="{% url 'healthymealplans' %}">Healthy Meal Plans</a>
+    </div>
+</nav>
+
+<main class="today-meal-container">
+    <h1>Today's Tailored Meal Plan</h1>
+
+    {% if plan %}
+        {% if plan.breakfast %}
+        <div class="today-meal-card">
+            <div class="meal-image">
+                <img src="{{ plan.breakfast.image.url }}" alt="{{ plan.breakfast.name }}">
+            </div>
+            <div class="meal-content">
+                <h2>Breakfast: {{ plan.breakfast.name }}</h2>
+                <h4>Preparation:</h4>
+                <p>{{ plan.breakfast.preparation_steps }}</p>
+                <h4>Nutrition Chart:</h4>
+                <pre>{{ plan.breakfast.nutrition_chart|safe }}</pre>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if plan.lunch %}
+        <div class="today-meal-card">
+            <div class="meal-image">
+                <img src="{{ plan.lunch.image.url }}" alt="{{ plan.lunch.name }}">
+            </div>
+            <div class="meal-content">
+                <h2>Lunch: {{ plan.lunch.name }}</h2>
+                <h4>Preparation:</h4>
+                <p>{{ plan.lunch.preparation_steps }}</p>
+                <h4>Nutrition Chart:</h4>
+                <pre>{{ plan.lunch.nutrition_chart|safe }}</pre>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if plan.dinner %}
+        <div class="today-meal-card">
+            <div class="meal-image">
+                <img src="{{ plan.dinner.image.url }}" alt="{{ plan.dinner.name }}">
+            </div>
+            <div class="meal-content">
+                <h2>Dinner: {{ plan.dinner.name }}</h2>
+                <h4>Preparation:</h4>
+                <p>{{ plan.dinner.preparation_steps }}</p>
+                <h4>Nutrition Chart:</h4>
+                <pre>{{ plan.dinner.nutrition_chart|safe }}</pre>
+            </div>
+        </div>
+        {% endif %}
+    {% else %}
+        <p class="no-meal">No meals available for you today.</p>
+    {% endif %}
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div>
+            <h4>About Us</h4>
+            <p>MedDine provides disease-friendly meal plans tailored to your needs.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Contact</h4>
+            <p>Email: support@meddine.com<br>Phone: +91 99958 28826</p>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2024 MedDine. All rights reserved.</div>
+</footer>
+</body>
+</html>

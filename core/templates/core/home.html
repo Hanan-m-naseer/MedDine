@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Transparent Nav -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/">MedDine</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'healthymealplans' %}">Healthy Meal Plans</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero homepage-hero">
+    <div class="hero-content">
+        <h1>Are you suffering from multiple health conditions?</h1>
+        <a class="cta-button" href="{% url 'register' %}">Get Your Meal Plan</a>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>About Us</h4>
+                <p>MedDine provides disease-friendly meal plans tailored to your body’s needs.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <p>Email: support@meddine.com<br>Phone: +91 99958 28826</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2024 MedDine. All rights reserved.</div>
+    </footer>
+</body>
+</html>

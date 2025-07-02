@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login | MedDine</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="auth-hero">
+        <div class="overlay"></div>
+        <div class="auth-container">
+            <h1>Login to MedDine</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+            <p class="switch-link">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+    </section>
+</body>
+</html>
